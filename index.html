@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>🧧 Bốc Lì Xì</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<div id="confettiLayer"></div>
+<!-- Nhạc nền -->
+<audio id="bgm" src="bgm.mp3" loop preload="auto"></audio>
+
+<!-- Popup thắng -->
+<div id="winOverlay" class="overlay hidden" aria-hidden="true">
+    <div class="overlay-backdrop" id="winBackdrop"></div>
+
+    <div class="win-card" id="winCard">
+        <button class="win-close" id="btnCloseWin" title="Đóng">✖</button>
+
+        <div class="win-title">🧧 Bạn bốc được</div>
+        <div class="win-money" id="winMoney">—</div>
+
+        <img class="win-img" id="winImg" src="win.png" alt="Ảnh thắng">
+
+        <div class="win-sub">Chúc mừng năm mới! 🎉</div>
+    </div>
+</div>
+
+<!-- Nếu bạn còn confetti -->
+<div id="confettiLayer"></div>
+
+<body>
+
+    <div class="wrap">
+        <header class="topbar card">
+            <div>
+                <h1>🧧 Bốc Lì Xì</h1>
+                <p class="muted">Đây là web để Huyền bốc lì xì :)))</p>
+            </div>
+
+            <div class="topbar-actions">
+                <button id="btnMusic" class="btn ghost" title="Bật/tắt nhạc nền">🎵 Nhạc: OFF</button>
+
+                <button id="btnSound" class="btn ghost" title="Bật/tắt âm thanh">🔊 Âm thanh: ON</button>
+                <button id="btnOpenAdmin" class="btn">🔐 Admin</button>
+            </div>
+        </header>
+
+        <main class="card">
+            <section>
+                <div class="head-row">
+                    <h2>Danh sách lì xì</h2>
+                    <span id="countBadge" class="badge">0</span>
+                </div>
+
+                <div id="emptyState" class="empty">
+                    Chưa có lì xì nào. Hãy đăng nhập Admin để thêm.
+                </div>
+
+                <div id="list" class="grid"></div>
+
+
+
+                <div class="result" id="result">
+                    <div class="label">Kết quả:</div>
+                    <div class="big" id="picked">—</div>
+                    <div class="foot">Bốc xong: lì xì sẽ bị loại khỏi danh sách.</div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ADMIN MODAL -->
+        <div id="adminModal" class="modal hidden" aria-hidden="true">
+            <div class="modal-backdrop" id="adminBackdrop"></div>
+
+            <div class="modal-card card">
+                <div class="modal-head">
+                    <h2>🔐 Admin</h2>
+                    <button id="btnCloseAdmin" class="btn ghost">✖</button>
+                </div>
+
+                <!-- LOGIN -->
+                <section id="adminLogin" class="admin-section">
+                    <p class="muted">Nhập mật khẩu để vào Admin.</p>
+                    <div class="row">
+                        <input id="adminPass" type="password" placeholder="Mật khẩu admin" />
+                        <button id="btnAdminLogin" class="btn primary">Đăng nhập</button>
+                    </div>
+                    <p class="foot">
+                        Mật khẩu mặc định: <b>admin123</b> (bạn có thể đổi sau khi đăng nhập).
+                    </p>
+                </section>
+
+                <!-- PANEL -->
+                <select id="imgSelect">
+                    <option value="random">🎲 Ảnh random</option>
+                    <option value="images/1.png">Ảnh 1</option>
+                    <option value="images/2.png">Ảnh 2</option>
+                    <option value="images/3.png">Ảnh 3</option>
+                    <option value="images/4.png">Ảnh 4</option>
+                    <option value="images/5.png">Ảnh 5</option>
+                    <option value="images/6.png">Ảnh 6</option>
+                    <option value="images/7.png">Ảnh 7</option>
+                    <option value="images/8.png">Ảnh 8</option>
+                    <option value="images/9.png">Ảnh 9</option>
+                    <option value="images/10.png">Ảnh 10</option>
+                </select>
+
+                <section id="adminPanel" class="admin-section hidden">
+                    <div class="admin-grid">
+                        <div class="card inner">
+                            <h3>Thêm lì xì</h3>
+                            <div class="row">
+                                <input id="amount" type="number" min="0" step="1000" placeholder="VD: 20000" />
+                                <button id="btnAdd" class="btn">+ Thêm</button>
+                            </div>
+                            <p class="foot">Mỗi lần thêm là thêm 1 “bao lì xì”. Thêm nhiều lần để có nhiều bao cùng mệnh
+                                giá.</p>
+                        </div>
+
+                        <div class="card inner">
+                            <h3>Đổi mật khẩu</h3>
+                            <div class="row">
+                                <input id="newPass" type="password" placeholder="Mật khẩu mới" />
+                                <button id="btnChangePass" class="btn">Lưu</button>
+                            </div>
+                            <p class="foot">Lưu trên trình duyệt (localStorage).</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <button id="btnAdminLogout" class="btn ghost">Đăng xuất</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
