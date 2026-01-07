@@ -58,7 +58,7 @@ let isAdmin = false;
 let isPicking = false;
 
 let soundOn = loadJSON(KEY_SOUND, true);
-let musicOn = loadJSON(KEY_MUSIC, false);
+let musicOn = loadJSON(KEY_MUSIC, true);
 
 let audioCtx = null;
 
@@ -420,3 +420,4 @@ document.addEventListener("keydown", (e) => {
 ========================= */
 ensureAdminPassExists();
 render();
+
